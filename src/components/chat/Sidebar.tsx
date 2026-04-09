@@ -191,25 +191,33 @@ export function Sidebar() {
 
   return (
     <>
+      {/* Mobile burger button */}
       <Button
         variant="ghost"
         size="icon"
-        className="fixed left-3 top-3 z-50 lg:hidden"
+        className="fixed left-3 top-3 z-40 lg:hidden bg-background/80 backdrop-blur-sm border shadow-sm"
         onClick={() => setOpen(true)}
       >
         <Menu className="size-4" />
       </Button>
 
-      {open && (
-        <div className="fixed inset-0 z-40 bg-black/40 lg:hidden" onClick={() => setOpen(false)} />
-      )}
+      {/* Mobile backdrop */}
+      <div
+        className={cn(
+          'fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden transition-opacity duration-300',
+          open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        )}
+        onClick={() => setOpen(false)}
+      />
 
+      {/* Desktop sidebar */}
       <aside className="hidden lg:flex w-64 shrink-0 flex-col border-r bg-sidebar">
         {sidebarContent}
       </aside>
 
+      {/* Mobile drawer */}
       <aside className={cn(
-        'fixed inset-y-0 left-0 z-50 flex w-72 flex-col border-r bg-sidebar transition-transform duration-200 lg:hidden',
+        'fixed inset-y-0 left-0 z-50 flex w-[280px] flex-col border-r bg-sidebar shadow-2xl transition-transform duration-300 ease-in-out lg:hidden',
         open ? 'translate-x-0' : '-translate-x-full'
       )}>
         {sidebarContent}

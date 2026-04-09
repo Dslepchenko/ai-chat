@@ -16,8 +16,15 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Gemini Chat',
-  description: 'ChatGPT-like chatbot powered by Google Gemini',
+  title: 'AI Chat',
+  description: 'ChatGPT-like AI chatbot',
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 }
 
 export default function RootLayout({
