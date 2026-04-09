@@ -6,9 +6,7 @@ async function extractText(file: File): Promise<string> {
   }
 
   if (file.type === 'application/pdf' || file.name.endsWith('.pdf')) {
-    // Import internal module directly to avoid pdf-parse loading test fixtures at startup
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const pdfParse = require('pdf-parse/lib/pdf-parse.js') as (buf: Buffer) => Promise<{ text: string }>
+    const { default: pdfParse } = await import('pdf-parse')
     const buffer = Buffer.from(await file.arrayBuffer())
     const result = await pdfParse(buffer)
     return result.text
